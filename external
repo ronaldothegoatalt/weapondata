@@ -1,0 +1,180 @@
+-- weapon_data.lua
+-- Executor-safe firearm database (no damage values)
+
+local Weapons = {}
+
+-----------------------------------------------------------------------
+-- Format:
+-- falloff = {
+--   { max = studs, helmet = "obliterate" | "break" | "deflect" }
+-- }
+-----------------------------------------------------------------------
+
+Weapons["Prince"] = {
+    falloff = {
+        { max = 100, helmet = "break" },
+        { max = 150, helmet = "break" },
+        { max = math.huge, helmet = "break" },
+    }
+}
+
+Weapons["Adjudicator"] = {
+    falloff = {
+        { max = 50, helmet = "break" },
+        { max = 70, helmet = "break" },
+        { max = math.huge, helmet = "break" },
+    }
+}
+
+Weapons["Kingslayer"] = {
+    falloff = {
+        { max = 40, helmet = "obliterate" },
+        { max = 90, helmet = "break" },
+        { max = math.huge, helmet = "break" },
+    }
+}
+
+Weapons["Okhotnik"] = {
+    falloff = {
+        { max = 999, helmet = "break" },
+    }
+}
+
+Weapons["Whisper"] = {
+    falloff = {
+        { max = 70, helmet = "break" },
+        { max = 100, helmet = "break" },
+        { max = math.huge, helmet = "break" },
+    }
+}
+
+Weapons["Jesse"] = {
+    falloff = {
+        { max = 50, helmet = "break" },
+        { max = 95, helmet = "break" },
+        { max = math.huge, helmet = "break" },
+    }
+}
+
+Weapons["Equine"] = {
+    falloff = {
+        { max = 25, helmet = "break" },
+        { max = 30, helmet = "break" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Volk"] = {
+    falloff = {
+        { max = 45, helmet = "break" },
+        { max = 100, helmet = "break" },
+        { max = math.huge, helmet = "break" },
+    }
+}
+
+Weapons["Judgement"] = {
+    falloff = {
+        { max = 60, helmet = "obliterate" },
+        { max = 100, helmet = "break" },
+        { max = math.huge, helmet = "break" },
+    }
+}
+
+Weapons["Hellion"] = {
+    falloff = {
+        { max = 20, helmet = "break" },
+        { max = 35, helmet = "break" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Crestfall"] = {
+    falloff = {
+        { max = 70, helmet = "break" },
+        { max = 100, helmet = "break" },
+        { max = math.huge, helmet = "break" },
+    }
+}
+
+-- New guns
+Weapons["Grace"] = {
+    falloff = {
+        { max = 30, helmet = "break" },
+        { max = 70, helmet = "break" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Hope"] = {
+    falloff = {
+        { max = 30, helmet = "break" },
+        { max = 80, helmet = "deflect" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Honour"] = {
+    falloff = {
+        { max = 40, helmet = "deflect" },
+        { max = 65, helmet = "deflect" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Talon"] = {
+    falloff = {
+        { max = 35, helmet = "break" },
+        { max = 60, helmet = "break" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Negotiator"] = {
+    falloff = {
+        { max = 25, helmet = "break" },
+        { max = 30, helmet = "deflect" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Knell"] = {
+    falloff = {
+        { max = 50, helmet = "break" },
+        { max = 70, helmet = "break" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Union"] = {
+    falloff = {
+        { max = 30, helmet = "break" },
+        { max = 225, helmet = "deflect" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+Weapons["Auclair"] = {
+    falloff = {
+        { max = 50, helmet = "break" },
+        { max = 70, helmet = "break" },
+        { max = math.huge, helmet = "deflect" },
+    }
+}
+
+-----------------------------------------------------------------------
+-- Helpers
+-----------------------------------------------------------------------
+
+function Weapons:getWeapon(name)
+    return self[name]
+end
+
+function Weapons:getTier(weapon, distance)
+    for _, tier in ipairs(weapon.falloff) do
+        if distance <= tier.max then
+            return tier
+        end
+    end
+end
+
+return Weapons
