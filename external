@@ -1,6 +1,3 @@
--- weapon_data.lua
--- Executor-safe firearm database (no damage values)
-
 local Weapons = {}
 
 -----------------------------------------------------------------------
